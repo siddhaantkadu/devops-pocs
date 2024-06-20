@@ -8,4 +8,4 @@
       shell: 'df -h'
       register: disk_space 
     - name: validate 
-      debug: var=disk_space
+      debug: var=disk_space.stdout_lines
