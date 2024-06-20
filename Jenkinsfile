@@ -10,7 +10,7 @@ pipeline {
 
                     '''
                         ssh centos@10.128.0.10 && df -h \
-                        && sudo yum install -y git 
+                        && mkdir /home/centos/testing-dev
                     '''
                     // sshCommnad remote: [host: "${REMOTE_HOST}", port: 22, user: "${SSH_USER}"], command: 'ls -la'
 
