@@ -1,0 +1,6 @@
+ /usr/local/bin/dicmd import -u admin \
+                        -w admin \
+                        -p PCInstall_Check \
+                        -l Development \
+                        -s datapoint=reuse,dataobject=reuse \
+                        -f '/home/vadmin/demo_jenkins/job_full_load_dynamic_cas.json'
