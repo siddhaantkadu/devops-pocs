@@ -9,3 +9,18 @@
       register: disk_space 
     - name: validate 
       debug: var=disk_space.stdout_lines
+    - name: print env variable 
+      shell: 'env'
+      register: env_var
+    - name: validate 
+      debug: var=env_var.stdout_lines
+
+    - name: Change file ownership, group and permissions
+      file: path=/home/centos/testing-agent state=directory
+            owner=centos group=centos mode='0755'
+    - name: Validate file 
+      stat: path=/home/centos/testing-agent
+      register: agent_path
+    - name: 
+      debug: var=agent_path
+      
