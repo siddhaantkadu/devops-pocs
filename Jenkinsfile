@@ -13,7 +13,7 @@ pipeline {
         stage('InstallAgent-OnRmote') {
             steps {
                 sh'''
-                    ansiblep-laybook -i /home/centos/inventory /home/centos/install-agent.yml
+                    ansible-playbook -i inventory install-agent.yml
                 '''
             }
         }
