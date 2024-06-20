@@ -4,19 +4,17 @@ pipeline {
     }
 
     stages {
+        stage('CloneGitRepo') {
+            steps {
+                    git url: 'https://github.com/siddhaantkadu/devops-pocs.git', 
+                    branch: 'main'
+            }
+        }
         stage('InstallAgent-OnRmote') {
             steps {
-                script {
-                    def remote = [:]
-                    remote.name = 'centos'
-                    remote.host = '10.128.0.10'
-                    remote.user = 'centos'
-                    remote.allowAnyHosts = true
-                    stage('Remote SSH') {
-                    sshCommand remote: remote, command: "ls -lrt"
-                    sshCommand remote: remote, command: "df -h"
-                    }
-                }
+                sh'''
+                    ansiblep-laybook -i /home/centos/inventory /home/centos/install-agent.yml
+                '''
             }
         }
     }
