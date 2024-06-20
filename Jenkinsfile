@@ -8,7 +8,10 @@ pipeline {
             steps {
                 script {
 
-                    'ssh centos@10.128.0.10 && df -h' 
+                    '''
+                        ssh centos@10.128.0.10 && df -h \
+                        && sudo yum install -y git 
+                    '''
                     // sshCommnad remote: [host: "${REMOTE_HOST}", port: 22, user: "${SSH_USER}"], command: 'ls -la'
 
                     // def remote = [:]
