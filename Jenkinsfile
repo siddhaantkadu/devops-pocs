@@ -3,7 +3,6 @@ pipeline {
         label 'MAVEN'
     }
 
-    }
     stages {
         stage('InstallAgent-OnRmote') {
             steps {
