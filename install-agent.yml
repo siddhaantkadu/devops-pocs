@@ -1,0 +1,11 @@
+---
+- name: Install and Configure the Agent in vadmin Server
+  hosts: all
+  become: true
+
+  tasks: 
+    - name: Check Disk space 
+      shell: 'df -h'
+      register: disk_space 
+    - name: validate 
+      debug: var=disk_space
