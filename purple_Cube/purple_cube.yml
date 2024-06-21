@@ -8,8 +8,8 @@
 
   tasks: 
     - name: Configure Agent
-      shell: "/usr/local/bin/dicmd import -u admin \
-                        -w admin \
+      shell: "/usr/local/bin/dicmd import -u {{ admin_user }} \
+                        -w {{ admin_password }} \
                         -p PCInstall_Check \
                         -l Development \
                         -s datapoint=reuse,dataobject=reuse \
