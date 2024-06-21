@@ -5,6 +5,7 @@ pipeline {
         BRANCH_NAME = 'feature/purpleCube'
         TARGET_SERVER = 'centos@10.128.0.10'
         TARGET_PATH = '/home/centos'
+        TARGET_HOST_JSON_REPO = 'purple-cube-jsons'
         SSH_CREDENTIALS_ID = 'jenkins-purple-cube'
     }
     stages {
@@ -40,11 +41,11 @@ pipeline {
                     sshagent(credentials: ["${env.SSH_CREDENTIALS_ID}"]) {
                         sh """
                             ssh -o StrictHostKeyChecking=no ${env.TARGET_SERVER} '
-                                hostanme 
+                                hostname  
                                 df -h
-                                ls -ltrha ${env.TARGET_PATH}
-                                mkdir -p ${env.TARGET_PATH}/purple-cube-jsons
+                                mkdir -p ${env.TARGET_PATH}/${env.TARGET_HOST_JSON_REPO}
                                 mv ${env.TARGET_PATH}/${baseName} ${env.TARGET_PATH}/purple-cube-jsons/${baseName}
+                                ls -ltrha ${env.TARGET_PATH}/${env.TARGET_HOST_JSON_REPO}
                             '
                         """
                     }
