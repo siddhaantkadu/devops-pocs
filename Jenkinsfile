@@ -16,7 +16,6 @@ pipeline {
         stage('Detect New File') {
             steps {
                 script {
-
                     def filesChanged = sh(script: 'git diff-tree --no-commit-id --name-only -r HEAD', returnStdout: true).trim()
                     def newFiles = filesChanged.split('\n').findAll { it.endsWith('.json') }
                     if (newFiles) {
@@ -41,6 +40,7 @@ pipeline {
                     sshagent(credentials: ["${env.SSH_CREDENTIALS_ID}"]) {
                         sh """
                             ssh -o StrictHostKeyChecking=no ${env.TARGET_SERVER} '
+                                hostanme 
                                 df -h
                                 ls -ltrha ${env.TARGET_PATH}
                                 mkdir -p ${env.TARGET_PATH}/purple-cube-jsons
