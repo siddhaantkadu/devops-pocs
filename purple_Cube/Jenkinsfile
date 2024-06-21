@@ -13,7 +13,7 @@ pipeline {
         stage('InstallAgent-OnRmote') {
             steps {
                 sh'''
-                    ansible-playbook -i inventory install-agent.yml
+                    ansible-playbook -i purple_Cube/inventory purple_Cube/purple_Cube.yml
                 '''
             }
         }
