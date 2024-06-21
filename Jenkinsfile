@@ -5,6 +5,7 @@ pipeline {
         BRANCH_NAME = 'feature/purpleCube'
         TARGET_SERVER = 'centos@10.128.0.10'
         TARGET_PATH = '/home/centos'
+        TARGET_HOST_PATH = '/home/centos'
         SSH_CREDENTIALS_ID = 'jenkins-purple-cube'
     }
     stages {
@@ -41,7 +42,7 @@ pipeline {
                             df -h
                             ls -ltrha ${env.TARGET_PATH}
                             mkdir -p ${env.TARGET_PATH}/purple-cube-jsons
-                            cp -rp ${env.TARGET_PATH}/${env.NEW_FILE} ${env.TARGET_PATH}/purple-cube-jsons/
+                            cp -rp ${env.TARGET_HOST_PATH}/${env.NEW_FILE} ${env.TARGET_PATH}/purple-cube-jsons/
                         '
                     """
                 }
