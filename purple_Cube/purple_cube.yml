@@ -3,6 +3,9 @@
   hosts: all
   become: true
 
+  var_files: 
+    - cypher.yml
+
   tasks: 
     - name: Configure Agent
       shell: "/usr/local/bin/dicmd import -u admin \
