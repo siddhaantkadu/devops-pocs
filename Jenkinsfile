@@ -37,7 +37,7 @@ pipeline {
             steps {
                 sshagent(credentials: ["${env.SSH_CREDENTIALS_ID}"]) {
                     sh """
-                        ssh -o StrictHostKeyChecking=no ${env.TARGET_SERVER} << EOF
+                        ssh -o StrictHostKeyChecking=no ${env.TARGET_SERVER} 'bash -s' << 'EOF'
                         df -h
                         ls -ltrha ${env.TARGET_PATH}
                         mkdir -p ${env.TARGET_PATH}/purple-cube-jsons
@@ -46,7 +46,6 @@ pipeline {
                 }
             }
         }
-    }
     post {
         always {
             cleanWs()
