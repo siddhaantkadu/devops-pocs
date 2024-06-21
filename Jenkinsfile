@@ -33,10 +33,16 @@ pipeline {
                 }
             }
         }
-        stage('Execute Script on Target Server') {
+        stage('Execute Commands on Target Server') {
             steps {
                 sshagent(credentials: ["${env.SSH_CREDENTIALS_ID}"]) {
-                    sh "ssh -o StrictHostKeyChecking=no ${env.TARGET_SERVER} 'df -h'"
+                    sh """
+                        ssh -o StrictHostKeyChecking=no ${env.TARGET_SERVER} << EOF
+                        df -h
+                        ls -ltrha ${env.TARGET_PATH}
+                        mkdir -p ${env.TARGET_PATH}/purple-cube-jsons
+                        EOF
+                    """
                 }
             }
         }
