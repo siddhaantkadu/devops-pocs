@@ -41,7 +41,7 @@ pipeline {
                             df -h
                             ls -ltrha ${env.TARGET_PATH}
                             mkdir -p ${env.TARGET_PATH}/purple-cube-jsons
-                            cp -rp ${env.TARGET_PATH}/${env.NEW_FILE} ${env.TARGET_PATH}/purple-cube-jsons/
+                            cp -rp ${env.TARGET_PATH}/$(basename ${env.NEW_FILE}) ${env.TARGET_PATH}/purple-cube-jsons/
                         '
                     """
                 }
