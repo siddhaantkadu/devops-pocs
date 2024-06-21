@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        label 'MAVEN'
+    }
+    options { 
+        timestamps () 
+    }
     environment {
         GIT_REPO_URL = 'https://github.com/siddhaantkadu/devops-pocs.git'
         BRANCH_NAME = 'feature/purpleCube'
