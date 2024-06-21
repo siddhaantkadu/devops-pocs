@@ -35,15 +35,18 @@ pipeline {
         }
         stage('Execute Commands on Target Server') {
             steps {
-                sshagent(credentials: ["${env.SSH_CREDENTIALS_ID}"]) {
-                    sh """
-                        ssh -o StrictHostKeyChecking=no ${env.TARGET_SERVER} '
-                            df -h
-                            ls -ltrha ${env.TARGET_PATH}
-                            mkdir -p ${env.TARGET_PATH}/purple-cube-jsons
-                            cp -rp ${env.TARGET_PATH}/$(basename ${env.NEW_FILE}) ${env.TARGET_PATH}/purple-cube-jsons/
-                        '
-                    """
+                script {
+                    def baseName = sh(script: "basename ${env.NEW_FILE}", returnStdout: true).trim()
+                    sshagent(credentials: ["${env.SSH_CREDENTIALS_ID}"]) {
+                        sh """
+                            ssh -o StrictHostKeyChecking=no ${env.TARGET_SERVER} '
+                                df -h
+                                ls -ltrha ${env.TARGET_PATH}
+                                mkdir -p ${env.TARGET_PATH}/purple-cube-jsons
+                                mv ${env.NEW_FILE} ${env.TARGET_PATH}/purple-cube-jsons/${baseName}
+                            '
+                        """
+                    }
                 }
             }
         }
