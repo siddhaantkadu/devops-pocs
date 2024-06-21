@@ -37,12 +37,12 @@ pipeline {
             steps {
                 sshagent(credentials: ["${env.SSH_CREDENTIALS_ID}"]) {
                     sh """
-                        ssh -o StrictHostKeyChecking=no ${env.TARGET_SERVER} << 'EOF'
-                        df -h
-                        ls -ltrha ${env.TARGET_PATH}
-                        mkdir -p ${env.TARGET_PATH}/purple-cube-jsons
-                        cp -rp ${env.NEW_FILE} ${env.TARGET_PATH}/purple-cube-jsons
-                        EOF
+                        ssh -o StrictHostKeyChecking=no ${env.TARGET_SERVER} '
+                            df -h
+                            ls -ltrha ${env.TARGET_PATH}
+                            mkdir -p ${env.TARGET_PATH}/purple-cube-jsons
+                            cp -rp ${env.TARGET_PATH}/${env.NEW_FILE} ${env.TARGET_PATH}/purple-cube-jsons/
+                        '
                     """
                 }
             }
