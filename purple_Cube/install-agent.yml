@@ -19,8 +19,8 @@
       file: path=/home/centos/testing-agent state=directory
             owner=centos group=centos mode='0755'
     - name: Validate file 
-      stat: path=/home/centos/testing-agent
+      shell: ls -ltrh /home/centos/
       register: agent_path
     - name: 
-      debug: var=agent_path
+      debug: var=agent_path.stdout_lines
       
