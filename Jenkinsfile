@@ -36,7 +36,7 @@ pipeline {
         stage('Execute Script on Target Server') {
             steps {
                 sshagent(credentials: ["${env.SSH_CREDENTIALS_ID}"]) {
-                    sh "ssh -o StrictHostKeyChecking=no ${env.TARGET_SERVER} 'bash ${env.TARGET_PATH}/agent-run.sh'"
+                    sh "ssh -o StrictHostKeyChecking=no ${env.TARGET_SERVER} 'df -h'"
                 }
             }
         }
