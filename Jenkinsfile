@@ -49,7 +49,7 @@ pipeline {
                                 hostname  
                                 df -h
                                 mkdir -p ${env.TARGET_PATH}/${env.TARGET_HOST_JSON_REPO}
-                                mv ${env.TARGET_PATH}/${baseName} ${env.TARGET_PATH}/purple-cube-jsons/${baseName}
+                                mv ${env.TARGET_PATH}/${baseName} ${env.TARGET_PATH}/${env.TARGET_HOST_JSON_REPO}/${baseName}
                                 ls -ltrha ${env.TARGET_PATH}/${env.TARGET_HOST_JSON_REPO}
                             '
                         """
